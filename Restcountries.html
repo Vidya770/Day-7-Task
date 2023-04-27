@@ -1,0 +1,115 @@
+//Solving problems using array functions on the rest countries' data 
+(https://restcountries.com/v3.1/all).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7 Question.No.1</title>
+</head>
+<body>
+    <script>
+        //a. Get all the countries from the Asia continent /region using the Filter function
+
+const request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all")
+request.send()
+request.onload=function(){ 
+    if (request.status==200)
+{
+    let c=JSON.parse(request.responseText)
+    c.filter((s)=>s.region==="Asia").map((e)=>{
+    console.log(e.name.official)})
+}
+    else   
+{ 
+    request.onerror=function()
+{
+    console.log("site is error")
+}}}
+
+// b.Get all the countries with a population of less than 2 lakhs using Filter function
+
+const request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all")
+request.send()
+request.onload=function(){ 
+    if (request.status==200)
+{
+    let c=JSON.parse(request.responseText)
+    c.filter((s)=>(s.population<200000)).map((e)=>{
+    console.log(e.population, e.name.official); 
+})
+}
+    else   
+{ 
+    request.onerror=function()
+{
+    console.log("site is error")
+}}}
+
+// c.Print the following details name, capital, flag using forEach function
+
+const request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all")
+request.send()
+request.onload=function(){ 
+    if (request.status==200)
+{
+    let c=JSON.parse(request.responseText)
+    c.forEach((g)=>{
+        console.log("Name:" + g.name.official);
+        console.log("capital:" + g.capital);
+        console.log("Flag:" + g.flags.svg);
+})
+}
+    else   
+{ 
+    request.onerror=function()
+{
+    console.log("site is error")
+}}}
+
+// d.Print the total population of countries using reduce function
+
+const request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all")
+request.send()
+request.onload=function(){ 
+    if (request.status==200)
+{
+    let c=JSON.parse(request.responseText)
+    b=c.reduce((a,{ population: p}) => a+=p,0)
+    console.log(b)
+}
+    else   
+{ 
+    request.onerror=function()
+{
+    console.log("site is error")
+}}}
+
+// e.Print the country which uses US Dollars as currency.
+
+const request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all")
+request.send()
+request.onload=function()
+{ 
+    if (request.status==200)
+    {
+let c=JSON.parse(request.responseText)
+c.filter((e)=>e.currencies).filter((e)=>{
+    console.log(e.currencies.USD)}
+
+)}
+else   
+{ 
+request.onerror=function()
+{
+    console.log("site is error")
+}}}
+    </script>
+</body>
+</html>
